@@ -13,9 +13,13 @@ services:
       context: .
     environment:
       NODE_ENV: production
-    command:  npm start -- -h localhost -p 8800 -c ./cache
+    command: npx nodemon --inspect=0.0.0.0:9229 server.js -- -h 0.0.0.0 -p 8008 -c ./cache
+    volumes:
+      - .:/usr/src/app
     ports:
-      - 8800:8800
+      - 8008:8008
+      - 9229:9229
+      
 
 # The commented out section below is an example of how to define a PostgreSQL
 # database that your application can use. `depends_on` tells Docker Compose to

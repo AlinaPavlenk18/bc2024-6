@@ -25,6 +25,7 @@ RUN --mount=type=bind,source=package.json,target=package.json \
     --mount=type=cache,target=/root/.npm \
     npm ci --omit=dev
 
+COPY package.json package-lock.json ./
 # Run the application as a non-root user.
 USER node
 
@@ -32,7 +33,7 @@ USER node
 COPY . .
 
 # Expose the port that the application listens on.
-EXPOSE 8800
+EXPOSE 8008 9229
 
 # Run the application.
-CMD ["npm", "start"]
+CMD ["npx", "nodemon","--inspect=0.0.0.0:9229", "server.js", "--", "-h", "0.0.0.0", "-p", "8008", "-c", "./cache"]
