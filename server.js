@@ -170,7 +170,7 @@ app.get('/notes', (req, res) => {
  *     requestBody:
  *       required: true
  *       content:
- *         application/x-www-form-urlencoded:
+ *         multipart/form-data:
  *           schema:
  *             type: object
  *             properties:
